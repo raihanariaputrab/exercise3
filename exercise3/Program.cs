@@ -61,6 +61,30 @@ namespace exercise3
             newNode.next = current;
             previous.next = newNode;
         }
+        public bool deleteNode(int studentNum)
+        {
+            Node previous, current;
+            previous = current = null;
+            if (Search(studentNum, ref previous, ref current) == false)
+                return false;
+            previous.next = current.next;
+            if (current == LAST)
+                LAST = LAST.next;
+            return true;
+        }
+        public bool Search(int studentNum, ref Node previous, ref Node current)
+        {
+            previous = current;
+            while ((current != null) && (studentNum != current.studentNumber))
+            {
+                previous = current;
+                current = current.next;
+            }
+            if (current == null)
+                return (false);
+            else
+                return (true);
+        }
 
         static void Main(string[] args)
         {
