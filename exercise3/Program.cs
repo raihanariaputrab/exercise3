@@ -95,18 +95,15 @@ namespace exercise3
         public void traverse()
         {
             if (listEmpty())
-                Console.WriteLine("\nList is empty");
+                Console.WriteLine("\nList is Empty");
             else
             {
-                Console.WriteLine("\nRecord in the list are :\n");
+                Console.WriteLine("\n Record in the list are : \n");
                 Node currentNode;
                 currentNode = LAST.next;
-                while (currentNode != LAST)
-                {
-                    Console.Write(currentNode.studentNumber + " " + LAST.studentName + "\n");
-                    currentNode = currentNode.next;
-                }
-                Console.Write(LAST.studentNumber + " " + LAST.studentName + "\n");
+                for (currentNode = LAST; currentNode != null; currentNode = currentNode.next)
+                    Console.Write(currentNode.studentNumber + " " + currentNode.studentName + "\n");
+                Console.WriteLine();
             }
         }
         public void firstNode()
@@ -119,7 +116,88 @@ namespace exercise3
 
         static void Main(string[] args)
         {
-
+            CircularList obj = new CircularList();
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("\nMenu");
+                    Console.WriteLine("1. Add a record to the list");
+                    Console.WriteLine("2. Delete a record from the list");
+                    Console.WriteLine("3. View all records in the list");
+                    Console.WriteLine("4. Search for a record in the list");
+                    Console.WriteLine("5. Display the first record in the list");
+                    Console.WriteLine("6. Exit\n");
+                    Console.WriteLine("Enter your choice (1-6): ");
+                    char ch = Convert.ToChar(Console.ReadLine());
+                    switch (ch)
+                    {
+                        case '1':
+                            {
+                                obj.addNode();
+                            }
+                            break;
+                        case '2':
+                            {
+                                if (obj.listEmpty())
+                                {
+                                    Console.WriteLine("\nList is empty");
+                                    break;
+                                }
+                                Console.Write("Enter the roll number of the student" + "whose record is to be deleted: ");
+                                int StudentNum = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine();
+                                if (obj.deleteNode(StudentNum) == false)
+                                    Console.WriteLine("record not found");
+                                else
+                                    Console.WriteLine("Record with roll number" + StudentNum + "deleted\n");
+                            }
+                            break;
+                        case '3':
+                            {
+                                obj.traverse();
+                            }
+                            break;
+                        case '4':
+                            {
+                                if (obj.listEmpty() == true)
+                                {
+                                    Console.WriteLine("\nList is empty");
+                                    break;
+                                }
+                                Node prev, curr;
+                                prev = curr = null;
+                                Console.Write("\nEnter the roll number of the student whose record you want to search: ");
+                                int num = Convert.ToInt32(Console.ReadLine());
+                                if (obj.Search(num, ref prev, ref curr) == false)
+                                    Console.WriteLine("\nRecord not found");
+                                else
+                                {
+                                    Console.WriteLine("\nRecord found");
+                                    Console.WriteLine("\nRoll number: " + curr.studentNumber);
+                                    Console.WriteLine("\nName: " + curr.studentName);
+                                }
+                            }
+                            break;
+                        case '5':
+                            {
+                                obj.firstNode();
+                            }
+                            break;
+                        case '6':
+                            return;
+                        default:
+                            {
+                                Console.WriteLine("\nInvalid option");
+                            }
+                            break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Check for the values entered.");
+                }
+            }
         }
     }
 }
