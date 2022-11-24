@@ -12,8 +12,16 @@ namespace exercise3
         public int studentNumber;
         public string studentName;
         public Node next;
-    
-    
+    }
+    class CircularList
+    {
+        Node LAST;
+        public CircularList()
+        {
+            LAST = null;
+        }
+        
+
         static void Main(string[] args)
         {
 
