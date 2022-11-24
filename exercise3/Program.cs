@@ -92,6 +92,23 @@ namespace exercise3
             else
                 return false;
         }
+        public void traverse()
+        {
+            if (listEmpty())
+                Console.WriteLine("\nList is empty");
+            else
+            {
+                Console.WriteLine("\nRecord in the list are :\n");
+                Node currentNode;
+                currentNode = LAST.next;
+                while (currentNode != LAST)
+                {
+                    Console.Write(currentNode.studentNumber + " " + LAST.studentName + "\n");
+                    currentNode = currentNode.next;
+                }
+                Console.Write(LAST.studentNumber + " " + LAST.studentName + "\n");
+            }
+        }
 
         static void Main(string[] args)
         {
