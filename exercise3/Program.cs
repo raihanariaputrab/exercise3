@@ -6,10 +6,17 @@ using System.Threading.Tasks;
 
 namespace exercise3
 {
-    internal class Program
+    class Node
     {
+        /*create Nodes for the circular nexted list*/
+        public int studentNumber;
+        public string studentName;
+        public Node next;
+    
+    
         static void Main(string[] args)
         {
+
         }
     }
 }
